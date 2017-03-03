@@ -20,14 +20,25 @@ namespace HelloWorld
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Models.User user = new Models.User();
+
         public MainWindow()
         {
             InitializeComponent();
+            
+            // Exercise 1: Maximize your window using code
+            WindowState = WindowState.Maximized;
+        }
+
+        public override void EndInit()
+        {
+            base.EndInit();
+            uxContainer.DataContext = user;
         }
 
         private void uxSubmit_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Submitting password:" + uxPassword.Text);
+            MessageBox.Show("Submitting password:" + uxPassword.Password);
         }
     }
 }
