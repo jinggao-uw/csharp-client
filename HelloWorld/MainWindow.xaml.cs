@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Data.Entity; // add this for EF to work
 
 namespace HelloWorld
 {
@@ -32,13 +33,28 @@ namespace HelloWorld
 
         public override void EndInit()
         {
+            //base.EndInit();
+            //uxContainer.DataContext = user;
+
             base.EndInit();
-            uxContainer.DataContext = user;
+
+            var sample = new SampleEntities();
+
+            sample.Users.Load();
+
+            uxList.ItemsSource = sample.Users.Local;
         }
 
         private void uxSubmit_Click(object sender, RoutedEventArgs e)
         {
+            int x = 1;
+            x = x / (x - 1); // Induce a DivideByZeroException
+
             MessageBox.Show("Submitting password:" + uxPassword.Password);
+            var window = new SecondWindow();
+            Application.Current.MainWindow = window;
+            Close();
+            window.Show();
         }
     }
 }
