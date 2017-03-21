@@ -25,7 +25,7 @@ namespace ContactApp
 
             Contact.Name = uxName.Text;
             Contact.Email = uxEmail.Text;
-
+            
             if (uxHome.IsChecked.Value)
             {
                 Contact.PhoneType = "Home";
@@ -36,7 +36,9 @@ namespace ContactApp
             }
 
             Contact.PhoneNumber = uxPhoneNumber.Text;
-            Contact.Age = 0;
+
+            // Add an age that matches to where the slider is at
+            Contact.Age = (int)uxAge.Value;
             Contact.Notes = uxNotes.Text;
             Contact.CreatedDate = DateTime.Now;
 
